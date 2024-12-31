@@ -16,7 +16,7 @@ const Home = () => {
           <div className="logo-text">Portfolio Website</div>
         </a>
         <nav>
-          <ul id="menu">
+          <ul id="menu" className={menuOpen ? "active" : ""}>
             <li>
               <a href="#">Home</a>
             </li>
@@ -89,7 +89,7 @@ const Home = () => {
             <img 
               src="/images/aslihero.png"
               alt="Vishesh Verma"
-              // className="hero-image"
+              className="hero-image"
               width={1200}
               height={400}
             />
