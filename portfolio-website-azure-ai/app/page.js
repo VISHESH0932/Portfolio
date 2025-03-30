@@ -3,16 +3,42 @@ import { useState } from "react";
 
 const Home = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
 
   const toggleMobileMenu = () => {
     setMenuOpen(!menuOpen);
   };
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSendEmail = (e) => {
+    e.preventDefault();
+
+    const { name, email, message } = formData;
+
+    if (!name || !email || !message) {
+      alert("Please fill in all fields.");
+      return;
+    }
+
+    const mailtoLink = `mailto:vermavishesh023@gmail.com?subject=Message from ${name}&body=Name: ${name}%0D%0AEmail: ${email}%0D%0AMessage: ${message}`;
+    window.location.href = mailtoLink;
+  }
+
   return (
     <>
       <header>
         <a href="#" className="logo-holder">
-          <div className="logo">L</div>
+          <div className="logo">
+          <img src="/images/logo.svg" alt="Logo" width={32} height={32} />
+          </div>
           <div className="logo-text">Portfolio Website</div>
         </a>
         <nav>
@@ -63,9 +89,8 @@ const Home = () => {
               <small>Hi I'm</small> Vishesh Verma
             </h1>
             <p>
-              Design and Developer in India pursuing B.Tech in Electronics and
-              Communication Engineering.
-              <span>kfnrjkgnjkrhngsernoQEJRTIOHYIOWEDioAJNJWHF.</span>
+               Developer and Programmer in India pursuing B.Tech in Electronics and
+              Communication Engineering from NIT PATNA.
             </p>
             <div className="call-to-action">
               <a href="./VisheshVerma_2104118.pdf" className="button black">
@@ -90,7 +115,7 @@ const Home = () => {
               src="/images/aslihero.png"
               alt="Vishesh Verma"
               className="hero-image"
-              width={1200}
+              width={800}
               height={400}
             />
           </div>
@@ -106,7 +131,7 @@ const Home = () => {
               <img src="/images/react.png" alt="React" width={128} height={128} />
               <img src="/images/mongoimg.png" alt="MongoDB" width={128} height={128} />
               <img src="/images/c++.png" alt="C++" width={128} height={128} />
-              <img src="/images/javaimg.png" alt="Java" width={128} height={128} />
+              <img src="/images/Javaimg.png" alt="Java" width={128} height={128} />
               <img src="/images/nextjs.png" alt="Next.js" width={128} height={128} />
               <img src="/images/html.png" alt="HTML" width={128} height={128} />
               <img src="/images/css.png" alt="CSS" width={128} height={128} />
@@ -115,7 +140,7 @@ const Home = () => {
               <img src="/images/react.png" alt="React" width={128} height={128} />
               <img src="/images/mongoimg.png" alt="MongoDB" width={128} height={128} />
               <img src="/images/c++.png" alt="C++" width={128} height={128} />
-              <img src="/images/javaimg.png" alt="Java" width={128} height={128} />
+              <img src="/images/Javaimg.png" alt="Java" width={128} height={128} />
               <img src="/images/nextjs.png" alt="Next.js" width={128} height={128} />
             </div>
           </div>
@@ -145,10 +170,12 @@ const Home = () => {
             <div className="right-column">
               <h3>A bit about me</h3>
               <p>
-                Hi I'm Vishesh...ifizskjgdklmdsklnrsiugnseigsiugbiugbsiusiugbsiufbiubveiutbeiubviubes89fbe8sbfdsif89ew8bf8bf!
+              Hi, I’m Vishesh Verma, a final-year B.Tech student in Electronics and Communication Engineering at NIT Patna, graduating in 2025 with a CGPA of 8.
+              I have a strong passion for problem-solving and development. My expertise in Data Structures and Algorithms (DSA) is reflected in my competitive programming achievements on platforms like LeetCode, Codeforces, and Codechef.
               </p>
               <p>
-                Hi I'm Vishesh...ifizskjgdklmdsklnrsiugnseigsiugbiugbsiusiugbsiufbiubveiutbeiubviubes89fbe8sbfdsif89ew8bf8bf!
+              On the development side, I specialize in full-stack web development, with hands-on experience building scalable applications using the MERN stack (MongoDB, Express.js, React.js, Node.js). My notable projects include an AI chatbot and a blockchain-based decentralized carpooling platform, showcasing my ability to merge innovation with functionality.
+              With a focus on creating impactful solutions, I aim to blend my technical skills and creativity to tackle real-world challenges.
               </p>
             </div>
           </div>
@@ -174,7 +201,8 @@ const Home = () => {
               </figure>
               <h3>Trainee</h3>
               <div>Feb 2022 - May 2022</div>
-              <p>This is an example description for a workplace.</p>
+              <p>Developed a Earthquake Dashboard and a home automation project</p>
+              <p>Skills: TinkerCAD ,NodeRED</p>
             </article>
             <article>
               <figure>
@@ -196,7 +224,7 @@ const Home = () => {
               <figure>
                 <div>
                   <img
-                    src="/images/Workplace3 (1).png"
+                    src="/images/smallfare.png"
                     alt="Workplace 3"
                     width="100%"
                     height="100%"
@@ -211,18 +239,38 @@ const Home = () => {
           </div>
         </section>
 
-        <section id="projects" className="bento container">
-          <h2>
-            <small>Previous</small>
-            Completed Projects
-          </h2>
-          <div className="bento-grid">
-            <a href="#" className="bento-item"></a>
-            <a href="#" className="bento-item"></a>
-            <a href="#" className="bento-item"></a>
-            <a href="#" className="bento-item"></a>
-          </div>
-        </section>
+  <section id="projects" className="bento container">
+  <h2>
+    <small>Previous</small>
+    Completed Projects
+  </h2>
+  <div className="bento-grid">
+    <a href="/projects/portfolio" className="bento-item">
+      <img src="/images/portfolioimg.png" alt="Portfolio Website" />
+      <div className="overlay">
+        <div className="text">Portfolio Website</div>
+      </div>
+    </a>
+    <a href="/projects/falldetection" className="bento-item">
+      <img src="/images/falldetect.png" alt="Fall Detection System" />
+      <div className="overlay">
+        <div className="text">Fall Detection System</div>
+      </div>
+    </a>
+    <a href="/projects/carpooling" className="bento-item">
+      <img src="/images/carpooling.jpg" alt="Carpooling Platform" />
+      <div className="overlay">
+        <div className="text">Carpooling Platform</div>
+      </div>
+    </a>
+    <a href="/projects/chatbot" className="bento-item">
+      <img src="/images/aichatbot.png" alt="AI Chatbot" />
+      <div className="overlay">
+        <div className="text">AI Chatbot</div>
+      </div>
+    </a>
+  </div>
+</section>
 
         <section id="chatbot" className="chatbot container">
           <h2>
@@ -231,19 +279,11 @@ const Home = () => {
           </h2>
           <div className="chatbot-black">
             <div className="chat-info">
-              <h3>Azure AI Chatbot</h3>
-              <p>
-                I've put together a chatbot here which knows all my skills, work
-                experience and has a copy of my Resume. You can use it to ask
-                questions about me to get a better idea of who I am and what
-                I've done.
-              </p>
-              <p>
-                You can also download my resume here if you want to take a look
-                at it. I'm currently looking for new opportunities so if you
-                have a project you think I'd be a good fit for, please get in
-                touch!
-              </p>
+              <h3> AI Chatbot</h3>
+               <p> I’ve created this chatbot to make it easy for you to learn more about me! It knows all about my skills, work experience, projects, and even has a copy of my resume. You can ask it anything to get a clear idea of my background and expertise. </p>
+               <p> This chatbot can guide you through my technical skills, including web development, Data Structures and Algorithms, and competitive programming, as well as highlight my hands-on experience with projects like an AI chatbot and Carpooling applications. </p> 
+               <p> You can also download my resume directly from here if you want to dive deeper into my profile. I’m currently seeking new opportunities, so if you think my skills and experience align with your needs, feel free to get in touch! </p> 
+               <p> Let the chatbot assist you in discovering how I can contribute to your team or project. It’s here to answer all your queries! </p>
               <a href="./VisheshVerma_2104118.pdf" className="button black">
                 Download Resume
               </a>
@@ -264,23 +304,56 @@ const Home = () => {
             <small>Get in Touch</small>
             Contact Me
           </h2>
-          <form className="contact-form">
+          <form className="contact-form" onSubmit={handleSendEmail}>
             <div className="form-group">
               <label htmlFor="name">Name</label>
-              <input type="text" id="name" name="name" required />
+              <input 
+              type="text" 
+              id="name" 
+              name="name" 
+              value = {formData.name}
+              onChange={handleChange}
+              required />
             </div>
             <div className="form-group">
               <label htmlFor="email">Email</label>
-              <input type="email" id="email" name="email" required />
+              <input 
+              type="email"
+               id="email" 
+               name="email" 
+               value={formData.email}
+               onChange={handleChange}
+               required />
             </div>
             <div className="form-group">
               <label htmlFor="message">Message</label>
-              <textarea id="message" name="message" rows="5" required></textarea>
+              <textarea 
+              id="message" 
+              name="message" 
+              rows="5" 
+              value={formData.message}
+              onChange={handleChange}
+              required></textarea>
             </div>
             <button type="submit" className="button black">Send</button>
           </form>
         </section>
       </main>
+
+      <footer className="footer">
+        <div className="container">
+          <div className="social-links">
+            <a href="https://github.com/VISHESH0932">
+              <img src="/images/github.png" alt="Github" width={48} height={48} />
+            </a>
+            <a href="https://www.linkedin.com/in/vishesh-verma-34609922a/">
+              <img src="/images/linkedin.png" alt="Linkedin" width={48} height={48} />
+            </a>
+          </div>
+          <h2>&copy; 2025 Vishesh Verma. All rights reserved.</h2>
+
+        </div>
+      </footer>
     </>
   );
 };
